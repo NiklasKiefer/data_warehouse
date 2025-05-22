@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:14
+    container_name: dw_postgres
+    environment:
+      POSTGRES_USER: dbt
+      POSTGRES_PASSWORD: dbt
+      POSTGRES_DB: sales_dw
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  dbt:
+    image: ghcr.io/dbt-labs/dbt-postgres:1.7.5
+    container_name: dw_dbt
+    volumes:
+      - ./dbt:/usr/app
+    working_dir: /usr/app
+    depends_on:
+      - postgres
+    entrypoint: [ "tail", "-f", "/dev/null" ]  # Keeps container running
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: dw_pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@pgadmin.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+    ports:
+      - "8080:80"
+    depends_on:
+      - postgres
+
+volumes:
+  pgdata:

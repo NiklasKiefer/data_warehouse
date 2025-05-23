@@ -1,5 +1,13 @@
 # Multidimensional schema
 This file contains the database schema for the sales data warehouse. It consists of two fact tables for order management and inventory management.
+Here follows a short description of the different chapters of this file:
+- **Model definition**: Initial definition of the tables the warehouse will contain
+- **Planned folder structure**: Folder structure of the data warehouse, containing all tables that the warehouse will consist of
+- **Table column definitoins**: Initial definition of each table of the warehouse. does not contain datatypes, they will be chosen during implementation
+
+*Additional Notes*
+- maybe implement Junk dimension if there is enough time to do so
+
 
 
 ## Model definition
@@ -37,6 +45,7 @@ This file contains the database schema for the sales data warehouse. It consists
 - stg_suppliers
 
 
+
 # Planned folder structure
 
 /models
@@ -45,7 +54,7 @@ This file contains the database schema for the sales data warehouse. It consists
             /stg_orders.sql
         /inventory
             /stg_inventory.sql
-        /shared_dimensions
+        /shared
             /stg_products.sql
             /stg_locations.sql
             /stg_customers.sql
@@ -63,4 +72,124 @@ This file contains the database schema for the sales data warehouse. It consists
             /dim_inventory_event_type.sql
             /dim_datetime.sql
 
+
+
 # Table column definitions
+NOTES:
+SK = Surrogate Key
+BK = Business key
+SCD 2 = Slowly changing columns level 2
+
+- **fact tables**
+
+fact_orders (
+    order_id BK
+    order_line_id PK
+    customer_id SK
+    product_id SK
+    datetime_id SK
+    location_id SK
+    quantity
+    unit_price (wird hier benötigt, da preis sich über zeit ändern kann)
+    total_price
+)
+
+fact_inventory (
+    inventory_movement_id PK
+    product_id SK
+    supplier_id SK
+    inventory_event_type_id SK
+    datetime_id SK
+    location_id SK
+    quantity
+    unit_price
+    total_price
+)
+
+- **dimension tables**
+
+dim_products (
+    product_id PK(SK)
+    product_code (BK)
+    name
+    manufacturer
+    category
+    product_type
+    valid_from         (Used for SCD 2)
+    valid_to           (Used for SCD 2)
+    is_current         (Used for SCD 2)
+)
+
+dim_customers (
+    customer_id PK(SK)
+    customer_code (BK)
+    firstname
+    lastname
+    birthdate
+    email
+    phonenumber
+    street
+    city
+    postal_code
+    state
+    country
+    valid_from         (Used for SCD 2)
+    valid_to           (Used for SCD 2)
+    is_current         (Used for SCD 2)
+)
+
+dim_location (
+    location_id PK(SK)
+    location_code (BK)
+    location_name
+    street
+    city
+    postal_code
+    state
+    country
+)
+
+dim_suppliers (
+    supplier_id PK(SK)
+    supplier_code (BK)
+    company_name
+    street
+    city
+    postal_code
+    state
+    country
+    valid_from         (Used for SCD 2)
+    valid_to           (Used for SCD 2)
+    is_current         (Used for SCD 2)
+)
+
+dim_inventory_event_type (
+    inventory_event_type_id PK(SK)
+    event_type_name (better as enum value, planned types: restock, return_to_supplier, customer_return, internal_transfer, write_off)
+    description (optional)
+)
+
+
+dim_datetime (
+    datetime_id PK(SK)   -- integer in linux format
+    date
+    time
+    
+    day
+    day_of_week
+
+    weekend
+
+    week
+    iso_week                -- iso standard for week, debatable if wanted
+    weekday_num_iso         -- iso standard for weekday, debatable if wanted
+    week_start_date
+
+    month
+    month_name
+    quarter
+    year
+
+    fiscal_year
+    fiscal_quarter
+)

@@ -20,21 +20,22 @@ Here follows a short description of the different chapters of this file:
 
 > Dimension tables
 
-** shared dimensions **
+**shared dimensions**
 - dim_datetime (values should be generated)
 - dim_products (slowly changing dimension type 2)
 - dim_locations
 
 
-** orders dimensions **
+**orders dimensions**
 - dim_customers (slowly changing dimension type 2)
 
-** inventory dimensions **
+**inventory dimensions**
 - dim_inventory_event_type
 - dim_suppliers (slowly changing dimension type 2)
 
 
 > Staging tables (important for etl process)
+
 - stg_orders
 - stg_inventory
 
@@ -174,22 +175,17 @@ dim_datetime (
     datetime_id PK(SK)   -- integer in linux format
     date
     time
-    
     day
     day_of_week
-
     weekend
-
     week
     iso_week                -- iso standard for week, debatable if wanted
     weekday_num_iso         -- iso standard for weekday, debatable if wanted
     week_start_date
-
     month
     month_name
     quarter
     year
-
     fiscal_year
     fiscal_quarter
 )

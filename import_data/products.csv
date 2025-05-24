@@ -1,0 +1,11 @@
+product_id,product_name,manufacturer,category,product_type
+P001,Laptop Dell Inspiron 15,Dell,Electronics,Computer
+P002,iPhone 14 Pro,Apple,Electronics,Smartphone
+P003,Office Chair Executive,Steelcase,Furniture,Chair
+P004,Wireless Mouse Logitech,Logitech,Electronics,Accessory
+P005,Coffee Maker Deluxe,Philips,Appliances,Kitchen
+P006,Gaming Monitor 27inch,Samsung,Electronics,Monitor
+P007,Desk Lamp LED,IKEA,Furniture,Lighting
+P008,Bluetooth Speaker,Sony,Electronics,Audio
+P009,Standing Desk Adjustable,Herman Miller,Furniture,Desk
+P010,Tablet iPad Air,Apple,Electronics,Tablet

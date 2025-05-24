@@ -1,0 +1,6 @@
+supplier_id,company_name,street,city,postal_code,state,country
+SUP001,Tech Solutions Inc,1000 Technology Dr,Austin,78701,TX,USA
+SUP002,Global Electronics Ltd,2000 Innovation Way,San Jose,95110,CA,USA
+SUP003,Furniture Direct Corp,3000 Manufacturing St,Grand Rapids,49503,MI,USA
+SUP004,Home Appliances Co,4000 Industrial Ave,Cleveland,44101,OH,USA
+SUP005,Office Equipment Plus,5000 Business Pkwy,Denver,80202,CO,USA

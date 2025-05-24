@@ -1,0 +1,9 @@
+location_id,location_name,street,city,postal_code,state,country
+WH001,Main Warehouse NYC,500 Industrial Blvd,New York,10002,NY,USA
+WH002,West Coast Distribution,1200 Harbor Dr,Los Angeles,90015,CA,USA
+WH003,Central Hub Chicago,800 Logistics Way,Chicago,60616,IL,USA
+ST001,Retail Store Manhattan,100 Broadway,New York,10005,NY,USA
+ST002,Retail Store Beverly Hills,200 Rodeo Dr,Beverly Hills,90210,CA,USA
+ST003,Retail Store Downtown Chicago,300 Michigan Ave,Chicago,60611,IL,USA
+WH004,Southeast Warehouse,400 Commerce St,Atlanta,30309,GA,USA
+ST004,Retail Store Miami,150 Ocean Dr,Miami,33139,FL,USA

@@ -1,0 +1,13 @@
+version: 2
+
+sources:
+  - name: raw
+    schema: public
+    tables:
+      - name: products
+      - name: customers
+      - name: locations
+      - name: suppliers
+      - name: orders
+      - name: event_types
+      - name: inventory

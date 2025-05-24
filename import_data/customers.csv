@@ -1,0 +1,11 @@
+customer_id,firstname,lastname,birthdate,email,phonenumber,street,city,postal_code,state,country
+C001,John,Smith,1985-03-15,john.smith@email.com,+1-555-0101,123 Main St,New York,10001,NY,USA
+C002,Sarah,Johnson,1992-07-22,sarah.j@email.com,+1-555-0102,456 Oak Ave,Los Angeles,90210,CA,USA
+C003,Michael,Brown,1978-11-08,m.brown@email.com,+1-555-0103,789 Pine Rd,Chicago,60601,IL,USA
+C004,Emily,Davis,1990-02-14,emily.davis@email.com,+1-555-0104,321 Elm St,Houston,77001,TX,USA
+C005,David,Wilson,1983-09-30,d.wilson@email.com,+1-555-0105,654 Maple Dr,Phoenix,85001,AZ,USA
+C006,Lisa,Garcia,1987-05-18,lisa.garcia@email.com,+1-555-0106,987 Cedar Ln,Philadelphia,19101,PA,USA
+C007,Robert,Martinez,1975-12-03,robert.m@email.com,+1-555-0107,147 Birch St,San Antonio,78201,TX,USA
+C008,Jennifer,Anderson,1993-08-27,jen.anderson@email.com,+1-555-0108,258 Spruce Ave,San Diego,92101,CA,USA
+C009,William,Taylor,1981-01-11,w.taylor@email.com,+1-555-0109,369 Walnut Rd,Dallas,75201,TX,USA
+C010,Amanda,Thomas,1989-04-06,amanda.t@email.com,+1-555-0110,741 Chestnut St,San Jose,95101,CA,USA

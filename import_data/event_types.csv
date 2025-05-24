@@ -1,0 +1,6 @@
+event_type_name,description
+restock,New inventory received from supplier
+return_to_supplier,Inventory returned to supplier due to defects
+customer_return,Product returned by customer
+internal_transfer,Transfer between warehouses or to retail stores
+write_off,Inventory written off due to damage or loss

@@ -12,6 +12,7 @@ services:
       - "5432:5432"
     volumes:
       - pgdata:/var/lib/postgresql/data
+      - ./import_data:/import_data  # <-- CSV-Dateien von Host verfügbar im Container
 
   dbt:
     image: ghcr.io/dbt-labs/dbt-postgres:1.7.5
@@ -21,7 +22,7 @@ services:
     working_dir: /usr/app
     depends_on:
       - postgres
-    entrypoint: [ "tail", "-f", "/dev/null" ]  # Keeps container running
+    entrypoint: [ "tail", "-f", "/dev/null" ]
 
   pgadmin:
     image: dpage/pgadmin4
@@ -31,6 +32,8 @@ services:
       PGADMIN_DEFAULT_PASSWORD: admin
     ports:
       - "8080:80"
+    volumes:
+      - ./import_data:/var/lib/pgadmin/import_data
     depends_on:
       - postgres
 

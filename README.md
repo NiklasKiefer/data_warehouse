@@ -65,3 +65,27 @@ This should result in the following message:
 > Create staging models for raw data
 > Build dimensional model using db run
 > Visualize using Power Bi
+
+
+
+# Creation the multidimensional models
+
+## Connect the database to pgAdmin
+
+> Click on "Add New Server"
+> Enter a Name for the server
+> Go to the tab "Connection" and add your local IP-adress
+> Add the username and password (dbt/dbt)
+> Click Save
+
+## dbt: Create the tables:
+
+See notes in the file **md_model_creation.md**
+
+## dbt: Laden der Rohdaten:
+
+See notes in the file **md_model_creation.md**
+
+## dbt: Staging-Modelle erstellen
+
+See notes in the file **md_model_creation.md**

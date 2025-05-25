@@ -1,0 +1,183 @@
+## Use Case: Jahresabschlussanalyse für das Geschäftsjahr 2024
+
+Zum Jahresende möchte das Management eines IT-Vertriebsunternehmens eine umfassende Analyse des Umsatzes im vergangenen Geschäftsjahr 2024 durchführen.  
+Ziel ist es, auf Basis dieser Auswertung fundierte Erkenntnisse für die strategische Planung 2025 zu gewinnen.
+
+**Aufgabe:**  
+Erstellen Sie einen interaktiven Power BI-Bericht, der die folgenden Fragestellungen visuell und datenbasiert beantwortet:
+
+### Zu beantwortende Fragestellungen:
+
+1. **Wie hoch war unser Gesamtumsatz im vergangenen Jahr?**
+2. **Wie hat sich der Umsatz über die Monate verteilt (Saisonalität)?**
+3. **Welche Produkte haben den meisten Umsatz generiert?**
+4. **Wer waren unsere Top-Kunden nach Umsatz?**
+5. **In welchen Regionen (Länder, Städte) wurde am meisten verkauft?**
+6. **Wie ist der durchschnittliche Bestellwert je Kunde / je Produkt?**
+7. **Wie viele Bestellungen wurden im vergangenen Jahr pro Monat abgewickelt?**
+8. **Wie sieht der Umsatz-Trend nach Produkttypen aus** (z. B. Hardware, Software, Services)?
+9.
+
+
+
+---
+
+## Anleitung: Erstellung eines Power BI-Berichts für die Jahresabschlussanalyse 2024
+
+---
+
+### 1. Voraussetzungen
+
+* Installiere **Power BI Desktop**
+* Starte deinen **Docker-Container** mit der Datenbank
+
+---
+
+### 2. Datenverbindung herstellen
+
+1. Öffne **Power BI Desktop**
+2. Wähle **Abrufen aus anderer Quelle**
+3. Gehe zu **Datenbank → PostgreSQL-Datenbank → Verbinden**
+4. Gib folgende Verbindungsdaten ein:
+   * **Server**: localhost:5432
+   * **Datenbank**: sales_dw
+   * **Benutzername**: dbt
+   * **Passwort**: dbt
+5. Wähle im **Navigator** folgende Tabellen aus:
+   * Alle public.dim...-Tabellen
+   * Die beiden public.fact...-Tabellen
+6. Klicke auf **Laden**
+
+---
+
+### 3. Erste Schritte in Power BI
+
+* **Tabellenansicht** (links, 2. Symbol): Überblick über Aufbau und Inhalt der Tabellen
+* **Modellansicht** (links, 3. Symbol): Darstellung der Beziehungen zwischen den Tabellen
+* **Berichtsansicht** (links, 1. Symbol): Hier erstellen wir unsere Visualisierungen
+
+---
+
+### 4. Datenmodell ergänzen
+
+- Wir erstellen eine Beziehung zwischen den Tabellen fact_orders.order_datetime und dim_datetime
+- Unter Tabellenansicht in der Tabelle public fact_orders erstellen wir eine neue Spalte: 
+order_date_key = FORMAT('public fact_orders'[order_datetime], "yyyy-MM-dd")
+- Dann erstellen wir eine weitere Spalte in der Tabelle public dim_datetime: 
+date_key = FORMAT('public dim_datetime'[full_date],"yyyy-MM-dd")
+- Wir verbinden die beiden Tabellen mittel Drag&Drop unter Modellansicht: public_fact_orders[order_date_key] -> public dim_datetime[date_key]; 1:n Beziehung
+- Wir erstellen das Measure Umsatz 2024 in der Tabelle public fact_orders: 
+Umsatz = SUMX('public fact_orders','public fact_orders'[quantity]*'public fact_orders'[unit_price]) 
+umsatz_2024 = CALCULATE(SUMX('public fact_orders','public fact_orders'[quantity] * 'public fact_orders'[unit_price]),YEAR('public fact_orders'[order_date_key])=2024)
+- Danach können wir mit den Visualisierungen starten.
+
+
+### 6. Visualisierungen erstellen
+
+#### 1. Gesamtumsatz im Jahr 2024
+
+- **Visualisierung**: KPI  
+- **Wert**: `umsatz_2024`  
+- **Trendachse**: `year_month`  
+
+---
+
+#### 2. Umsatzverlauf über Monate (Saisonalität)
+
+- **Visualisierung**: Liniendiagramm  
+- **X-Achse**: `year_month`  
+- **Y-Achse**: `Umsatz`  
+- *Hinweis: Funktioniert ggf. noch nicht korrekt*
+
+---
+
+#### 3. Umsatz nach Produkten
+
+- **Visualisierung**: Gestapeltes Balkendiagramm  
+- **X-Achse**: `umsatz_2024`  
+- **Y-Achse**: `product_name`  
+
+---
+
+#### 4. Top-Kunden nach Umsatz
+
+- **Visualisierung**: Balkendiagramm  
+- **X-Achse**: `firstname`  
+- **Y-Achse**: `umsatz_2024`  
+
+---
+
+#### 5. Umsatz nach Regionen (Länder, Städte)
+
+- **Visualisierung**: Flächenkartogramm  
+- **Standort**: `state`  
+- **Legende**: `country`  
+
+---
+
+#### 6. Durchschnittlicher Bestellwert je Kunde
+
+- **Visualisierung**: Matrix  
+- **Zeilen**: `firstname`  
+- **Werte**:  
+
+  `Durchschnitt_Bestellwert_Kunde = DIVIDE([Umsatz], DISTINCTCOUNT('public fact_orders'[customer_id]))`
+
+---
+
+#### 7. Durchschnittlicher Bestellwert je Produkt
+
+- **Visualisierung**: Matrix  
+- **Zeilen**: `product_name`  
+- **Werte**:  
+
+  `Durchschnitt_Bestellwert_Produkt = DIVIDE([Umsatz], DISTINCTCOUNT('public fact_orders'[product_id]))`
+
+---
+
+#### 8. Anzahl Bestellungen pro Monat 2024
+
+- **Visualisierung**: Liniendiagramm  
+- **X-Achse**: `year_month` oder `month`  
+- **Y-Achse**: `order_id`  
+- *Hinweis: Funktioniert ggf. noch nicht korrekt*
+
+---
+
+#### 9. Umsatztrend nach Produkttypen
+
+- **Visualisierung**: Gruppiertes Balkendiagramm  
+- **X-Achse**: `Umsatz_2024`  
+- **Y-Achse**: Spalte aus `dim_datetime` (z. B. `month`)  
+- **Legende**: `product_type`  
+- *Hinweis: Funktioniert ggf. noch nicht korrekt*
+
+---
+
+#### 10. Umsatz pro Vertriebsstandort
+
+- **Visualisierung**: Gestapeltes Säulendiagramm  
+- **X-Achse**: `location_name`  
+- **Y-Achse**: `umsatz_2024`  
+- **Legende**: `state`  
+
+##### Optional: Flächenkartogramm
+
+- **Standort**: `state`  
+- **Legende**: `location_name`
+
+---
+
+### Verbesserungen
+
+- Mehrere Kunden (nicht nur USA)  
+- Daten für mehrere Jahre  
+- Vollständige und realistische 2024-Daten  
+- Retail-Stores außerhalb der USA  
+- Unterschiedliche Produkttypen  
+- Optimierung der Tabelle `public dim_datetime`
+- Power BI verbessern - roten Faden und Use Case herauskristallisieren
+
+
+
+

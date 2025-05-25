@@ -18,8 +18,6 @@ Erstellen Sie einen interaktiven Power BI-Bericht, der die folgenden Fragestellu
 8. **Wie sieht der Umsatz-Trend nach Produkttypen aus** (z. B. Hardware, Software, Services)?
 9.
 
-
-
 ---
 
 ## Anleitung: Erstellung eines Power BI-Berichts für die Jahresabschlussanalyse 2024
@@ -39,13 +37,13 @@ Erstellen Sie einen interaktiven Power BI-Bericht, der die folgenden Fragestellu
 2. Wähle **Abrufen aus anderer Quelle**
 3. Gehe zu **Datenbank → PostgreSQL-Datenbank → Verbinden**
 4. Gib folgende Verbindungsdaten ein:
-   * **Server**: localhost:5432
-   * **Datenbank**: sales_dw
-   * **Benutzername**: dbt
-   * **Passwort**: dbt
+   * **Server**: `localhost:5432`
+   * **Datenbank**: `sales_dw`
+   * **Benutzername**: `dbt`
+   * **Passwort**: `dbt`
 5. Wähle im **Navigator** folgende Tabellen aus:
-   * Alle public.dim...-Tabellen
-   * Die beiden public.fact...-Tabellen
+   * Alle `public.dim...`-Tabellen
+   * Die beiden `public.fact...`-Tabellen
 6. Klicke auf **Laden**
 
 ---
@@ -60,17 +58,20 @@ Erstellen Sie einen interaktiven Power BI-Bericht, der die folgenden Fragestellu
 
 ### 4. Datenmodell ergänzen
 
-- Wir erstellen eine Beziehung zwischen den Tabellen fact_orders.order_datetime und dim_datetime
-- Unter Tabellenansicht in der Tabelle public fact_orders erstellen wir eine neue Spalte: 
-order_date_key = FORMAT('public fact_orders'[order_datetime], "yyyy-MM-dd")
-- Dann erstellen wir eine weitere Spalte in der Tabelle public dim_datetime: 
-date_key = FORMAT('public dim_datetime'[full_date],"yyyy-MM-dd")
-- Wir verbinden die beiden Tabellen mittel Drag&Drop unter Modellansicht: public_fact_orders[order_date_key] -> public dim_datetime[date_key]; 1:n Beziehung
-- Wir erstellen das Measure Umsatz 2024 in der Tabelle public fact_orders: 
-Umsatz = SUMX('public fact_orders','public fact_orders'[quantity]*'public fact_orders'[unit_price]) 
-umsatz_2024 = CALCULATE(SUMX('public fact_orders','public fact_orders'[quantity] * 'public fact_orders'[unit_price]),YEAR('public fact_orders'[order_date_key])=2024)
+- Wir erstellen eine Beziehung zwischen den Tabellen `fact_orders.order_datetime` und `dim_datetime`
+- Unter Tabellenansicht in der Tabelle `public fact_orders` erstellen wir eine neue Spalte:  
+  ``order_date_key = FORMAT('public fact_orders'[order_datetime], "yyyy-MM-dd")``
+- Dann erstellen wir eine weitere Spalte in der Tabelle `public dim_datetime`:  
+  ``date_key = FORMAT('public dim_datetime'[full_date], "yyyy-MM-dd")``
+- Wir verbinden die beiden Tabellen mittels Drag & Drop unter Modellansicht:  
+  ``public_fact_orders[order_date_key] -> public dim_datetime[date_key]``  
+  (Beziehung: 1:n)
+- Wir erstellen das Measure `Umsatz 2024` in der Tabelle `public fact_orders`:  
+  ``Umsatz = SUMX('public fact_orders', 'public fact_orders'[quantity] * 'public fact_orders'[unit_price])``  
+  ``umsatz_2024 = CALCULATE(SUMX('public fact_orders', 'public fact_orders'[quantity] * 'public fact_orders'[unit_price]), YEAR('public fact_orders'[order_date_key]) = 2024)``
 - Danach können wir mit den Visualisierungen starten.
 
+---
 
 ### 6. Visualisierungen erstellen
 
@@ -120,8 +121,7 @@ umsatz_2024 = CALCULATE(SUMX('public fact_orders','public fact_orders'[quantity]
 - **Visualisierung**: Matrix  
 - **Zeilen**: `firstname`  
 - **Werte**:  
-
-  `Durchschnitt_Bestellwert_Kunde = DIVIDE([Umsatz], DISTINCTCOUNT('public fact_orders'[customer_id]))`
+  ``Durchschnitt_Bestellwert_Kunde = DIVIDE([Umsatz], DISTINCTCOUNT('public fact_orders'[customer_id]))``
 
 ---
 
@@ -130,8 +130,7 @@ umsatz_2024 = CALCULATE(SUMX('public fact_orders','public fact_orders'[quantity]
 - **Visualisierung**: Matrix  
 - **Zeilen**: `product_name`  
 - **Werte**:  
-
-  `Durchschnitt_Bestellwert_Produkt = DIVIDE([Umsatz], DISTINCTCOUNT('public fact_orders'[product_id]))`
+  ``Durchschnitt_Bestellwert_Produkt = DIVIDE([Umsatz], DISTINCTCOUNT('public fact_orders'[product_id]))``
 
 ---
 
@@ -175,9 +174,5 @@ umsatz_2024 = CALCULATE(SUMX('public fact_orders','public fact_orders'[quantity]
 - Vollständige und realistische 2024-Daten  
 - Retail-Stores außerhalb der USA  
 - Unterschiedliche Produkttypen  
-- Optimierung der Tabelle `public dim_datetime`
-- Power BI verbessern - roten Faden und Use Case herauskristallisieren
-
-
-
-
+- Optimierung der Tabelle `public dim_datetime`  
+- Power BI verbessern – roten Faden und Use Case herauskristallisieren

@@ -8,15 +8,19 @@ Erstellen Sie einen interaktiven Power BI-Bericht, der die folgenden Fragestellu
 
 ### Zu beantwortende Fragestellungen:
 
-1. **Wie hoch war unser Gesamtumsatz im vergangenen Jahr?**
-2. **Wie hat sich der Umsatz über die Monate verteilt (Saisonalität)?**
-3. **Welche Produkte haben den meisten Umsatz generiert?**
-4. **Wer waren unsere Top-Kunden nach Umsatz?**
-5. **In welchen Regionen (Länder, Städte) wurde am meisten verkauft?**
-6. **Wie ist der durchschnittliche Bestellwert je Kunde / je Produkt?**
-7. **Wie viele Bestellungen wurden im vergangenen Jahr pro Monat abgewickelt?**
-8. **Wie sieht der Umsatz-Trend nach Produkttypen aus** (z. B. Hardware, Software, Services)?
-9.
+## Fragestellungen
+
+1. Wie hoch war unser Gesamtumsatz im vergangenen Jahr?
+2. Wie hat sich der Umsatz über die Monate verteilt (Saisonalität)?
+3. Welche Produkte haben den meisten Umsatz generiert?
+4. Wer waren unsere Top-Kunden nach Umsatz?
+5. In welchen Regionen (Länder, Städte) wurde am meisten verkauft?
+6. Wie ist der durchschnittliche Bestellwert je Kunde?
+7. Wie ist der durchschnittliche Bestellwert je Produkt?
+8. Wie viele Bestellungen wurden im vergangenen Jahr pro Monat abgewickelt?
+9. Wie sieht der Umsatz-Trend nach Produkttypen aus (z. B. Hardware, Software, Services)?
+10. Wie hoch ist der Umsatz pro Vertriebsstandort?
+
 
 ---
 

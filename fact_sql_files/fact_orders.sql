@@ -6,7 +6,9 @@ select
     o.customer_id,
     o.product_id,
     o.location_id,
-    o.order_datetime,
+    dt.datetime_id,
     o.quantity,
     o.unit_price
 from {{ ref('stg_orders') }} o
+join {{ ref('dim_datetime') }} dt
+    on cast(o.order_datetime as date) = dt.date_day

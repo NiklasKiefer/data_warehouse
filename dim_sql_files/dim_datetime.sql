@@ -3,9 +3,10 @@
 with dates as (
     select
         date_trunc('day', d)::date as date_day
-    from generate_series('2020-01-01'::date, '2030-12-31'::date, interval '1 day') d
+    from generate_series('2024-01-01'::date, '2024-12-31'::date, interval '1 day') d
 )
 select
+    (extract(year from date_day)::int * 10000 + extract(month from date_day)::int * 100 + extract(day from date_day)::int) as datetime_id, -- ID-Spalte YYYYMMDD
     date_day,
     extract(year from date_day)::int as year,
     extract(month from date_day)::int as month,

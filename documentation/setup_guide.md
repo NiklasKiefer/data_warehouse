@@ -15,7 +15,6 @@ data_warehouse
     │   docker-compose.yml                          # initial docker setup for data warehouse project
     │   drop_tables.sql                             # script for dropping all tables
     │   source.yml                                  # raw table setup for dbt
-    │   Use_Case_salesdb.pbix                       # power bi use case visualization 
     │   Visualization_Salesdw_PowerBI.pbix          # power bi dashboard visualization
     │
     ├───dim_sql_files                               # dimension tables sql files

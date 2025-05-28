@@ -57,6 +57,7 @@ We click on the table mentioned under Table view and select New measure under Ca
 #### 2. selection product type
 - **Visualization:** Data section
 - **Field:** `dim_products[product_type]`
+
 #### 3. Sales development in the 2024 financial year
 - **Visualization:** Line chart
 - **X-axis:** `dim_datetime[month]`
@@ -67,7 +68,7 @@ We click on the table mentioned under Table view and select New measure under Ca
 - **Value:** Turnover
 - **Trend axis:** `dim_datetime[year]`
 
-#### 5th annual turnover 2024
+#### 5. annual turnover 2024
 - **Visualization:** Stacked bar chart
 - **Y-axis:** `dim_products.product_name`
 - **X-axis:** Turnover
@@ -77,7 +78,7 @@ We click on the table mentioned under Table view and select New measure under Ca
 - **X-axis:** `dim_customers[state]`
 - **Y-axis:** Turnover
 
-#### 7th turnover in 2024 per business location
+#### 7. turnover in 2024 per business location
 - **Visualization:** Ring chart
 - Legend:** `dim_location[location_name]`
 - **Values:** Turnover

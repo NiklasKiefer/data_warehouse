@@ -127,44 +127,4 @@ This should result in the following message:
 
 ````**All checks passed!**````
 
-This confirms the dbt project was created successfully.
-
-## Creating a multidimensional model
-From inside of your data_warehouse folder, move to the following folder location:
-````
-dbt/sales_project/seeds
-
-````
-Store the raw input data located in the `import_data` folder from the project folder structure inside of this `seeds`.
-After taht, from inside the dbt container, use the following command
-````
-dbt seed
-````
-
-After completion, the something like following result should be seen in the console:
-
-````
-Finished running 7 seeds in 0 hours 0 minutes and 0.64 seconds (0.64s).
-  
-Completed successfully
-````
-
-Now within the data warehouse project, execute following script to load the multidimensional model into the dbt container:
-
-````automated_copy_to_models.py````
-
-After that, all sql scripts should be copied into the folder `dbt/models/`.
-
-Finally, execute the loaded scripts using the following command:
-
-`dbt run`
-
-After completion the terminal should show this report:
-
-````
-Finished running 8 table models, 7 view models in 0 hours 0 minutes and 1.27 seconds (1.27s).
-
-Completed successfully
-````
-
-This concludes the setup of the data warehouse.
+This confirms the dbt project was created successfully, which concludes the setup necessary for the presentation.

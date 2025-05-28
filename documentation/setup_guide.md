@@ -11,7 +11,6 @@ The following installments are required for the setup:
 The project contains the following structure:
 ````
 data_warehouse
-    │   automated_copy_to_models.py                 # copies staging, dimension, and fact tables into their dedicated dbt subfolders 
     │   docker-compose.yml                          # initial docker setup for data warehouse project
     │   drop_tables.sql                             # script for dropping all tables
     │   source.yml                                  # raw table setup for dbt

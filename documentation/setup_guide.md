@@ -64,6 +64,7 @@ For this project, the following technology stack was used:
 
 ## Initial setup
 Initiate the project environment using the provided `docker-compose.yml` file:
+
 ````docker compose up -d````
 
 This command initializes and starts all required containers.
@@ -98,9 +99,11 @@ Now you should be able to find the empty `sales_dw` database in the Object Explo
 
 ## Creating a new dbt project
 A `dbt` project has to be created for to manage the tables of this database. Enter the dbt container using the following command:
+
 ````docker exec -it dw_dbt bash````
 
-If not already in */usr/app*, move into this folder and type the following command to intiate the project
+If not already in */usr/app*, move into this folder and type the following command to intiate the project:
+
 ````dbt init sales_project````
 
 When asked, enter the following information:
@@ -114,9 +117,11 @@ When asked, enter the following information:
 - Threads: **1**
 
 After this is done, the project should be successfully created. In order to verify this, navigate into the sales_project folder like this:
+
 ````cd /usr/app/sales_project````
 
 Then, test if the seutp was successful by typing in the following command:
+
 ````dbt debug````
 
 This should result in the following message:

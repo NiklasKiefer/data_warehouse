@@ -17,40 +17,19 @@ data_warehouse
     │   source.yml                                  # raw table setup for dbt
     │   Visualization_Salesdw_PowerBI.pbix          # power bi dashboard visualization
     │
-    ├───dim_sql_files                               # dimension tables sql files
-    │       dim_customers.sql
-    │       dim_datetime.sql
-    │       dim_event_types.sql
-    │       dim_location.sql
-    │       dim_products.sql
-    │       dim_suppliers.sql
-    │
     ├───documentation                               # project documentation files
     │       multidimensional_schema.md
     │       setup_guide.md
     │       visualization_of_usecase.md
     │
-    ├───fact_sql_files                              # fact table sql files
-    │       fact_inventory.sql
-    │       fact_orders.sql
-    │
     ├───import_data                                 # raw input csv files 
-    │       customers.csv
-    │       event_types.csv                         
-    │       inventory.csv
-    │       locations.csv
-    │       orders.csv
-    │       products.csv
-    │       suppliers.csv
-    │
-    └───stag_sql_files                              # staging table sql files
-            stg_customers.sql
-            stg_event_types.sql
-            stg_inventory.sql
-            stg_locations.sql
-            stg_orders.sql
-            stg_products.sql
-            stg_suppliers.sql
+            customers.csv
+            event_types.csv                         
+            inventory.csv
+            locations.csv
+            orders.csv
+            products.csv
+            suppliers.csv
 ````
 
 ## Technology stack

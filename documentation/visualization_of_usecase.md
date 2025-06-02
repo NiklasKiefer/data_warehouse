@@ -27,7 +27,7 @@ Use interactive visualizations to analyze the following questions based on data:
 3. go to **Database → PostgreSQL database → Connect**
 4. enter the following connection data:
 * **Server**: `localhost:5432`
-**Database**: `sales_dw`
+* **Database**: `sales_dw`
 * **User name**: `dbt`
 * **Password**: `dbt`
 5. Select the following tables in the **Navigator**:
